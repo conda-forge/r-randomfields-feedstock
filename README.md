@@ -14,14 +14,16 @@ Summary: Methods for the inference on and the simulation of Gaussian fields are 
 Current build status
 ====================
 
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/r-randomfields-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/r-randomfields-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/r-randomfields-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/r-randomfields-feedstock)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/r-randomfields-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/r-randomfields-feedstock/branch/master)
+[![Linux](https://img.shields.io/circleci/project/github/conda-forge/r-randomfields-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/r-randomfields-feedstock)
+[![OSX](https://img.shields.io/travis/conda-forge/r-randomfields-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/r-randomfields-feedstock)
+[![Windows](https://img.shields.io/appveyor/ci/conda-forge/r-randomfields-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/conda-forge/r-randomfields-feedstock/branch/master)
 
 Current release info
 ====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/r-randomfields/badges/version.svg)](https://anaconda.org/conda-forge/r-randomfields)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/r-randomfields/badges/downloads.svg)](https://anaconda.org/conda-forge/r-randomfields)
+
+| Name | Downloads | Version | Platforms |
+| --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-r--randomfields-green.svg)](https://anaconda.org/conda-forge/r-randomfields) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/r-randomfields.svg)](https://anaconda.org/conda-forge/r-randomfields) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/r-randomfields.svg)](https://anaconda.org/conda-forge/r-randomfields) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/r-randomfields.svg)](https://anaconda.org/conda-forge/r-randomfields) |
 
 Installing r-randomfields
 =========================
