@@ -1,5 +1,4 @@
 {% set version = '3.1.50' %}
-
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,43 +9,58 @@ package:
 source:
   fn: RandomFields_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/RandomFields_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/RandomFields/RandomFields_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/RandomFields_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/RandomFields/RandomFields_{{ version }}.tar.gz
   sha256: 2d6a07c3a716ce20f9c685deb59e8fcc64fd52c8a50b0f04baf451b6b928e848
 
 build:
-  number: 0
-  script: R CMD INSTALL --build .
-  skip: True  # [win32]
+  merge_build_host: True  # [win]
+  number: 1
+  skip: true  # [win32]
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
+    - {{ compiler('c') }}        # [not win]
+    - {{ compiler('cxx') }}      # [not win]
+    - {{native}}toolchain        # [win]
+    - {{posix}}filesystem        # [win]
+    - {{posix}}make
+    - {{posix}}sed               # [win]
+    - {{posix}}coreutils         # [win]
+    - {{posix}}zip               # [win]
+  host:
     - r-base
-    - r-randomfieldsutils
+    - r-randomfieldsutils >=0.3.25
     - r-sp
-    - posix  # [win]
-    - {{native}}toolchain  # [win]
-    - gcc  # [not win]
   run:
     - r-base
-    - r-randomfieldsutils
+    - {{native}}gcc-libs         # [win]
+    - r-randomfieldsutils >=0.3.25
     - r-sp
-    - libgcc  # [not win]
 
 test:
   commands:
-    - $R -e "library('RandomFields')"  # [not win]
+    - $R -e "library('RandomFields')"           # [not win]
     - "\"%R%\" -e \"library('RandomFields')\""  # [win]
 
 about:
-  home: https://cran.r-project.org/web/packages/RandomFields
+  home: http://ms.math.uni-mannheim.de/de/publications/software
   license: GPL (>= 3)
   summary: Methods for the inference on and the simulation of Gaussian fields are provided, as
     well as methods for the simulation of extreme value random fields.
+  license_family: GPL3
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'  # [unix]
+  license_file: '{{ environ["PREFIX"] }}\R\share\licenses\GPL-3'  # [win]
 
 extra:
   recipe-maintainers:
     - ocefpaf
+    - johanneskoester
+    - bgruening
+    - daler
+    - jdblischak
+    - cbrueffer
+    - dbast
