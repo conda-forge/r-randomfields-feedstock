@@ -1,4 +1,4 @@
-{% set version = "3.3.1" %}
+{% set version = '3.3.4' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -7,16 +7,14 @@ package:
   version: {{ version|replace("-", "_") }}
 
 source:
-  fn: RandomFields_{{ version }}.tar.gz
   url:
     - {{ cran_mirror }}/src/contrib/RandomFields_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/RandomFields/RandomFields_{{ version }}.tar.gz
-  sha256: f85c6e6cd07c5e7180a8d05024f91137d6af829e7fa892a75476a9e64a0008bc
+  sha256: a340d4f3ba7950d62acdfa19b9724c82e439d7b1a9f73340124038b7c90c73d4
 
 build:
   merge_build_host: True  # [win]
   number: 0
-  skip: true  # [win32]
   rpaths:
     - lib/R/lib/
     - lib/
@@ -27,18 +25,23 @@ requirements:
     - {{ compiler('cxx') }}      # [not win]
     - {{native}}toolchain        # [win]
     - {{posix}}filesystem        # [win]
-    - {{posix}}make
     - {{posix}}sed               # [win]
+    - {{posix}}grep              # [win]
+    - {{posix}}autoconf
+    - {{posix}}automake          # [not win]
+    - {{posix}}automake-wrapper  # [win]
+    - {{posix}}pkg-config
+    - {{posix}}make
     - {{posix}}coreutils         # [win]
     - {{posix}}zip               # [win]
   host:
     - r-base
-    - r-randomfieldsutils >=0.3.25
+    - r-randomfieldsutils >=0.5.1
     - r-sp
   run:
     - r-base
     - {{native}}gcc-libs         # [win]
-    - r-randomfieldsutils >=0.3.25
+    - r-randomfieldsutils >=0.5.1
     - r-sp
 
 test:
@@ -47,7 +50,7 @@ test:
     - "\"%R%\" -e \"library('RandomFields')\""  # [win]
 
 about:
-  home: http://ms.math.uni-mannheim.de/de/publications/software
+  home: http://ms.math.uni-mannheim.de/de/publications/software/randomfields
   license: GPL (>= 3)
   summary: Methods for the inference on and the simulation of Gaussian fields are provided, as
     well as methods for the simulation of extreme value random fields.
@@ -56,10 +59,23 @@ about:
 
 extra:
   recipe-maintainers:
+    - conda-forge/r
     - ocefpaf
-    - johanneskoester
-    - bgruening
-    - daler
-    - jdblischak
-    - cbrueffer
-    - dbast
+
+# Package: RandomFields
+# Version: 3.3.4
+# Title: Simulation and Analysis of Random Fields
+# Author: Martin Schlather [aut, cre], Alexander Malinowski [aut], Marco Oesting [aut], Daphne Boecker [aut], Kirstin Strokorb [aut], Sebastian Engelke [aut], Johannes Martini [aut], Felix Ballani [aut], Olga Moreva [aut], Jonas Auel[ctr], Peter Menck [ctr], Sebastian Gross [ctr], Ulrike Ober [ctb], Paulo Ribeiro [ctb], Brian D. Ripley [ctb], Richard Singleton [ctb], Ben Pfaff [ctb], R Core Team [ctb]
+# Maintainer: Martin Schlather <schlather@math.uni-mannheim.de>
+# LinkingTo: RandomFieldsUtils
+# Depends: R (>= 3.0), sp, RandomFieldsUtils (>= 0.5.1)
+# Imports: graphics, methods, grDevices, stats, utils
+# Suggests: colorspace, RColorBrewer, mvtnorm, raster, tcltk2, tcltk, tkrplot, spam, tools, geoR, minqa, soma, optimx, nloptr, pso, GenSA
+# Description: Methods for the inference on and the simulation of Gaussian fields are provided, as well as methods for the simulation of extreme value random fields.
+# Collate: aaa_auto.R aaa_globals.R basic.fctns.R bigdata.R Class.R convert_new.R convert.R Crossvalidation.R datasets.R D.H.R fitbernoulli.R fitbr.R fitgauss.R fitmaxstable.R fitpoisson.R getNset.R helmholz.R internal_use.R kriging.R Likelihoodratio.R Methods-aux.R Methods-RFsp.R obsolete.R RFempvario-Methods-plots.R RFempvario.R RFfit.R RFgui.R rf-plots.R rf.R RMmodels-Methods-plots.R RMmodelsBasics.R RMmodels.R RMmodelsConvenience.R RMmodelsSpecial.R RQmodels.R generatemodels.R zzz.R
+# License: GPL (>= 3)
+# URL: http://ms.math.uni-mannheim.de/de/publications/software/randomfields
+# Packaged: 2019-02-28 20:40:27 UTC; schlather
+# NeedsCompilation: yes
+# Repository: CRAN
+# Date/Publication: 2019-02-28 22:42:20 UTC
