@@ -1,4 +1,4 @@
-{% set version = "3.3.8" %}
+{% set version = "3.3.10" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,11 +10,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/RandomFields_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/RandomFields/RandomFields_{{ version }}.tar.gz
-  sha256: 8a08e2fdae428e354a29fb6818ae781cc56235a6849a0d29574dc756f73199d0
+  sha256: f72de676269085f1d2810cfa028f0fa411f1fe948141b42c9a7d687064599249
 
 build:
-  merge_build_host: True  # [win]
-  number: 1
+  merge_build_host: true  # [win]
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
@@ -53,10 +53,9 @@ test:
 about:
   home: http://ms.math.uni-mannheim.de/de/publications/software/randomfields
   license: GPL (>= 3)
-  summary: Methods for the inference on and the simulation of Gaussian fields are provided, as
-    well as methods for the simulation of extreme value random fields.
+  summary: Methods for the inference on and the simulation of Gaussian fields are provided, as well as methods for the simulation of extreme value random fields.
   license_family: GPL3
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'
+  license_file: {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
 
 extra:
   recipe-maintainers:
