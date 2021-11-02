@@ -1,4 +1,4 @@
-{% set version = "3.3.10" %}
+{% set version = "3.3.13" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/RandomFields_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/RandomFields/RandomFields_{{ version }}.tar.gz
-  sha256: f72de676269085f1d2810cfa028f0fa411f1fe948141b42c9a7d687064599249
+  sha256: dbf82a8a39a79ca1b53665c2375cdd58f7accb38062063bbd9854d13493d3f49
 
 build:
   merge_build_host: true  # [win]
