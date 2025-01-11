@@ -12,7 +12,7 @@ source:
   sha256: 242600b9bf93af9d49a06c00ff2398054a882d644a4653ea348533410c3db930
 
 build:
-  number: 3
+  number: 4
   rpaths:
     - lib/R/lib/
     - lib/
@@ -36,6 +36,8 @@ requirements:
     - {{ posix }}coreutils         # [win]
     - {{ posix }}zip               # [win]
     - cross-r-base {{ r_base }}    # [build_platform != target_platform]
+    - r-randomfieldsutils >=0.5.4  # [build_platform != target_platform]
+    - r-sp                         # [build_platform != target_platform]
   host:
     - r-base
     - r-randomfieldsutils >=0.5.4
@@ -54,7 +56,6 @@ about:
   home: http://ms.math.uni-mannheim.de/de/publications/software/randomfields
   license: GPL-3.0-or-later
   summary: Methods for the inference on and the simulation of Gaussian fields are provided, as well as methods for the simulation of extreme value random fields.
-  license_family: GPL3
   license_file:
     - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
 
